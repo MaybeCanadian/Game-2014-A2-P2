@@ -19156,7 +19156,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -19164,6 +19164,27 @@ TextureImporter:
       bones: []
       spriteID: d3f7e66d21dc38c41b3e5d734f75b7b6
       internalID: -140617774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Falling Platform
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 816
+        width: 48
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 075002c3bdcbecf4ca7a57b25163338c
+      internalID: -1798956558
       vertices: []
       indices: 
       edges: []
@@ -19237,6 +19258,7 @@ TextureImporter:
       mainlev_build_398: 1884996991
       mainlev_build_720: 1317325592
       mainlev_build_784: -582004362
+      Falling Platform: -1798956558
       mainlev_build_678: 242519152
       mainlev_build_846: -1472866839
       mainlev_build_470: -1137233448
