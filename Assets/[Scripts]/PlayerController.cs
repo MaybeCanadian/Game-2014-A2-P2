@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     public float gravityBoostRate;
 
     [Header("Coyote Frames")]
-    public float coyoteFrames;
+    public float coyoteDuration;
     public bool coyoteTime;
     public float jumpCooldown;
     public bool jumpOnCooldown;
@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public int currentJumpNumber;
 
     [Header("Wall Jumps")]
+    public bool wallJumpEnabled;
     public Transform wallPoint;
     public float wallRadius;
     public bool isTouchingWall;
@@ -40,8 +41,14 @@ public class PlayerController : MonoBehaviour
     public float wallJumpForceUp;
     public float wallJumpForceSide;
 
+    [Header("Particle Effects")]
+    public ParticleSystem particleSystem;
+    public float jumpEffectDuration;
+    public Color jumpEffectColor;
+    public float runEffectDuration;
+    public Color runEffectColor;
 
-    [Header("Physcis")]
+    [Header("Physics")]
     public Rigidbody2D rb;
 
     [Header("Control Scheme")]
@@ -50,6 +57,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        particleSystem = GetComponent<ParticleSystem>();
         isGrounded = false;
         isGroundedLast = false;
         jumpOnCooldown = false;
@@ -113,8 +121,13 @@ public class PlayerController : MonoBehaviour
             var clampedXVeclocity = Mathf.Clamp(rb.velocity.x, -horizontalSpeed, horizontalSpeed);
 
             rb.velocity = new Vector2(clampedXVeclocity, rb.velocity.y);
+
+            if(!isGrounded)
+            {
+                //PlayRunningParticleEffect();
+            }
         }
-        }
+    }
 
     private void ParseJumpInput(float y)
     {
@@ -125,7 +138,7 @@ public class PlayerController : MonoBehaviour
                 currentJumpNumber = 0;
                 Jump(firstJumpForce);
             }
-            else if (isTouchingWall)
+            else if (isTouchingWall && wallJumpEnabled)
             {
                 currentJumpNumber = 0;
                 WallJump(wallJumpForceUp, wallJumpForceSide);
@@ -144,6 +157,8 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(Vector2.up * force, ForceMode2D.Impulse);
         jumpOnCooldown = true;
         Invoke("ResetJumpCooldown", jumpCooldown);
+
+        //PlayJumpingParticleEffect();
         currentJumpNumber++;
     }
 
@@ -153,6 +168,23 @@ public class PlayerController : MonoBehaviour
         jumpOnCooldown = true;
         Invoke("ResetJumpCooldown", jumpCooldown);
         currentJumpNumber++;
+    }
+
+    private void PlayRunningParticleEffect()
+    {
+        particleSystem.Stop();
+        var main = particleSystem.main;
+        main.duration = runEffectDuration;
+        particleSystem.GetComponent<Renderer>().material.SetColor("_Color", runEffectColor);
+        particleSystem.Play();
+    }
+    private void PlayJumpingParticleEffect()
+    {
+        particleSystem.Stop();
+        var main = particleSystem.main;
+        main.duration = jumpEffectDuration;
+        particleSystem.GetComponent<Renderer>().material.SetColor("_Color", jumpEffectColor);
+        particleSystem.Play();
     }
 
     private void ResetJumpCooldown()
@@ -184,7 +216,7 @@ public class PlayerController : MonoBehaviour
     {
         float timer = 0;
         
-        while(timer <= coyoteFrames)
+        while(timer <= coyoteDuration)
         {
             timer += Time.deltaTime;
             yield return null;
