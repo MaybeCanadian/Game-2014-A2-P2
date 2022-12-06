@@ -54,6 +54,11 @@ public class PlayerController : MonoBehaviour
     [Header("Control Scheme")]
     public bool useMobileInput = false;
 
+    [Header("Player Animations")]
+    public Animator anims;
+
+    //------------------------
+    //Init functions
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -63,7 +68,8 @@ public class PlayerController : MonoBehaviour
         jumpOnCooldown = false;
         currentJumpNumber = 0;
     }
-
+    //-----------------------
+    //Movement Functions
     private void FixedUpdate()
     {
         var hit = Physics2D.OverlapCircle(groundPoint.position, groundRadius, groundLayerMask);
@@ -97,20 +103,6 @@ public class PlayerController : MonoBehaviour
 
         isGroundedLast = isGrounded;
     }
-
-    private Vector2 GetMobileInput()
-    {
-        Vector2 input = new Vector2(0.0f, 0.0f);
-        return input;
-    }
-
-    private Vector2 GetKeyboardInput()
-    {
-        Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Jump"));
-
-        return input;
-    }
-
     private void Move(float x)
     {
         if (x != 0.0f)
@@ -122,13 +114,12 @@ public class PlayerController : MonoBehaviour
 
             rb.velocity = new Vector2(clampedXVeclocity, rb.velocity.y);
 
-            if(!isGrounded)
+            if (!isGrounded)
             {
                 //PlayRunningParticleEffect();
             }
         }
     }
-
     private void ParseJumpInput(float y)
     {
         if (!jumpOnCooldown && y > 0.0f)
@@ -150,7 +141,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
     private void Jump(float force)
     {
         StopCoroutine("ResetJumpCooldown");
@@ -161,7 +151,6 @@ public class PlayerController : MonoBehaviour
         //PlayJumpingParticleEffect();
         currentJumpNumber++;
     }
-
     private void WallJump(float upForce, float sideForce)
     {
         rb.AddForce(Vector2.up * upForce + Vector2.left * sideForce, ForceMode2D.Impulse);
@@ -169,7 +158,43 @@ public class PlayerController : MonoBehaviour
         Invoke("ResetJumpCooldown", jumpCooldown);
         currentJumpNumber++;
     }
+    private void ResetJumpCooldown()
+    {
+        jumpOnCooldown = false;
+    }
+    public void Flip(float x)
+    {
+        if (x != 0.0f)
+        {
+            transform.localScale = new Vector3((x > 0.0f) ? 0.75f : -0.75f, 0.75f, 0.75f);
+        }
+    }
+    private void GravityAdjust()
+    {
+        if (rb.velocity.y < 0.0f)
+        {
+            rb.gravityScale += gravityBoostRate * Time.fixedDeltaTime;
+            return;
+        }
 
+        rb.gravityScale = 1.0f;
+
+    }
+    //-----------------------
+    //Input Collection
+    private Vector2 GetMobileInput()
+    {
+        Vector2 input = new Vector2(0.0f, 0.0f);
+        return input;
+    }
+    private Vector2 GetKeyboardInput()
+    {
+        Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Jump"));
+
+        return input;
+    }
+    //-----------------------
+    //Particle Effects
     private void PlayRunningParticleEffect()
     {
         particleSystem.Stop();
@@ -186,32 +211,8 @@ public class PlayerController : MonoBehaviour
         particleSystem.GetComponent<Renderer>().material.SetColor("_Color", jumpEffectColor);
         particleSystem.Play();
     }
-
-    private void ResetJumpCooldown()
-    {
-        jumpOnCooldown = false;
-    }
-
-    public void Flip(float x)
-    {
-        if (x != 0.0f)
-        {
-            transform.localScale = new Vector3((x > 0.0f) ? 0.75f : -0.75f, 0.75f, 0.75f);
-        }
-    }
-
-    private void GravityAdjust()
-    {
-        if(rb.velocity.y < 0.0f)
-        {
-            rb.gravityScale += gravityBoostRate * Time.fixedDeltaTime;
-            return;
-        }
-
-        rb.gravityScale = 1.0f;
-
-    }
-
+    //-----------------------
+    //Corutines
     private IEnumerator CoyoteTimeCoroutine()
     {
         float timer = 0;
@@ -225,6 +226,8 @@ public class PlayerController : MonoBehaviour
         coyoteTime = false;
         yield break;
     }
+    //-----------------------
+    //Gizmo Draws
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.cyan;
@@ -233,4 +236,5 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(wallPoint.position, wallRadius);
     }
+    //-----------------------
 }
