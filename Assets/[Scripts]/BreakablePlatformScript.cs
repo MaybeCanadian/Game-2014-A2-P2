@@ -9,16 +9,22 @@ public class BreakablePlatformScript : MonoBehaviour
     public float resetTimer;
 
     public GameObject platformObject;
+    public BoxCollider2D boxCol;
+
+    public Animator anims;
 
     private void Start()
     {
         breaking = false;
+        boxCol = GetComponent<BoxCollider2D>();
+        anims = GetComponent<Animator>();
         platformObject.SetActive(true);
     }
 
     private IEnumerator BreakPlatform()
     {
         breaking = true;
+        anims.SetBool("Breaking", true);
         float timer = 0;
 
         while(timer < breakTimer)
@@ -28,7 +34,9 @@ public class BreakablePlatformScript : MonoBehaviour
         }
 
         breaking = false;
+        anims.SetBool("Breaking", false);
         platformObject.SetActive(false);
+        boxCol.enabled = false;
 
         StartCoroutine(ResetPlatform());
         yield return null;
@@ -46,13 +54,15 @@ public class BreakablePlatformScript : MonoBehaviour
 
         breaking = false;
         platformObject.SetActive(true);
+        boxCol.enabled = true;
         yield return null;
     }
-    public void OnCollision() 
-    { 
-        if(breaking == false && platformObject.activeInHierarchy)
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (breaking == false && platformObject.activeInHierarchy)
         {
             StartCoroutine(BreakPlatform());
         }
-    }
+    } 
+    
 }

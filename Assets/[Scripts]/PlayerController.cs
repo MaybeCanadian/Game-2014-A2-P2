@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Gravity Boosts")]
     public float gravityBoostRate;
+    public float defaultGravityScale;
 
     [Header("Coyote Frames")]
     public float coyoteDuration;
@@ -65,6 +66,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         particleSystem = GetComponent<ParticleSystem>();
+        rb.gravityScale = defaultGravityScale;
         isGrounded = false;
         isGroundedLast = false;
         jumpOnCooldown = false;
@@ -193,7 +195,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        rb.gravityScale = 1.0f;
+        rb.gravityScale = defaultGravityScale;
 
     }
     //-----------------------
