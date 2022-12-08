@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Multiple Jumps")]
     public int numberOfJumps = 1;
+    public bool inAir = false;
     public int currentJumpNumber;
 
     [Header("Wall Jumps")]
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask wallJumpLayerMask;
     public float wallJumpForceUp;
     public float wallJumpForceSide;
+    public bool right;
 
     [Header("Particle Effects")]
     public ParticleSystem particleSystem;
@@ -67,6 +69,7 @@ public class PlayerController : MonoBehaviour
         isGroundedLast = false;
         jumpOnCooldown = false;
         currentJumpNumber = 0;
+        right = true;
     }
     //-----------------------
     //Movement Functions
@@ -87,6 +90,7 @@ public class PlayerController : MonoBehaviour
         if(isGrounded)
         {
             currentJumpNumber = 0;
+            inAir = false;
             if (coyoteTime)
             {
                 StopCoroutine(CoyoteTimeCoroutine());
@@ -95,6 +99,15 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector2 input =  (useMobileInput) ? GetMobileInput() : GetKeyboardInput();
+
+        if(input.x > 0)
+        {
+            right = true;
+        }
+        else if(input.x < 0)
+        {
+            right = false;
+        }
 
         Move(input.x);
         ParseJumpInput(input.y);
@@ -127,6 +140,7 @@ public class PlayerController : MonoBehaviour
             if ((isGrounded || coyoteTime))
             {
                 currentJumpNumber = 0;
+                inAir = true;
                 Jump(firstJumpForce);
             }
             else if (isTouchingWall && wallJumpEnabled)
@@ -134,7 +148,7 @@ public class PlayerController : MonoBehaviour
                 currentJumpNumber = 0;
                 WallJump(wallJumpForceUp, wallJumpForceSide);
             }
-            else if (currentJumpNumber < numberOfJumps)
+            else if (currentJumpNumber < numberOfJumps && inAir)
             {
                 rb.velocity = new Vector2(rb.velocity.x, 0.0f);
                 Jump(extraJumpForce);
@@ -153,7 +167,9 @@ public class PlayerController : MonoBehaviour
     }
     private void WallJump(float upForce, float sideForce)
     {
-        rb.AddForce(Vector2.up * upForce + Vector2.left * sideForce, ForceMode2D.Impulse);
+        rb.velocity = new Vector2(0.0f, 0.0f);
+        float direction = (right) ? 1.0f : -1.0f;
+        rb.AddForce(Vector2.up * upForce + Vector2.left * direction * sideForce, ForceMode2D.Impulse);
         jumpOnCooldown = true;
         Invoke("ResetJumpCooldown", jumpCooldown);
         currentJumpNumber++;
