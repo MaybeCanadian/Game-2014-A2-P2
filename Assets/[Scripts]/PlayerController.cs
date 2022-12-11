@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         particleSystem = GetComponent<ParticleSystem>();
+        anims = GetComponent<Animator>();
         rb.gravityScale = defaultGravityScale;
         isGrounded = false;
         isGroundedLast = false;
@@ -113,6 +114,7 @@ public class PlayerController : MonoBehaviour
 
         Move(input.x);
         ParseJumpInput(input.y);
+        ControlAnimations(input);
 
         GravityAdjust();
 
@@ -212,6 +214,19 @@ public class PlayerController : MonoBehaviour
         return input;
     }
     //-----------------------
+    //Player Animations
+    private void ControlAnimations(Vector2 inputDirection)
+    {
+        if(inputDirection.x != 0)
+        {
+            anims.SetInteger("AnimState", (int)playerAnimStates.Run);
+            return;
+        }
+
+        anims.SetInteger("AnimState", (int)playerAnimStates.Idle);
+
+    }
+    //-----------------------
     //Particle Effects
     private void PlayRunningParticleEffect()
     {
@@ -255,4 +270,10 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireSphere(wallPoint.position, wallRadius);
     }
     //-----------------------
+}
+
+public enum playerAnimStates
+{
+    Idle,
+    Run
 }

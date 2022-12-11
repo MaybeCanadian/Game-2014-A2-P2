@@ -7478,7 +7478,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 727644461}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 85.53, y: 43.02, z: -10}
+  m_LocalPosition: {x: 0.2, y: 1.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -113118,7 +113118,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1809828502}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 85.53, y: 43.02, z: -10}
+  m_LocalPosition: {x: 0.2, y: 1.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -116188,11 +116188,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3175550463393558184, guid: 996112f30d16a1749b033076ad01f7ec, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 85.53
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 3175550463393558184, guid: 996112f30d16a1749b033076ad01f7ec, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 42.02
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3175550463393558184, guid: 996112f30d16a1749b033076ad01f7ec, type: 3}
       propertyPath: m_LocalPosition.z
@@ -116244,7 +116244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3175550463393558198, guid: 996112f30d16a1749b033076ad01f7ec, type: 3}
       propertyPath: coyoteDuration
-      value: 0.15
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 3175550463393558198, guid: 996112f30d16a1749b033076ad01f7ec, type: 3}
       propertyPath: extraJumpForce
@@ -116294,6 +116294,10 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3175550463393558199, guid: 996112f30d16a1749b033076ad01f7ec, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 5e7f469bb9c26b84297e39afc8ceddc2, type: 2}
     - target: {fileID: 3175550463393558199, guid: 996112f30d16a1749b033076ad01f7ec, type: 3}
       propertyPath: m_UseAutoMass
       value: 0
