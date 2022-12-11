@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7870356645712279522}
   - component: {fileID: 7870356645712279523}
   - component: {fileID: 4604224908730880241}
-  - component: {fileID: 8843467396784176518}
   - component: {fileID: 7588419948112531933}
+  - component: {fileID: -5642286569284555925}
   m_Layer: 8
   m_Name: Moving Platform
   m_TagString: Untagged
@@ -35,7 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7870356645712279524
 SpriteRenderer:
@@ -149,24 +149,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: 1
-  verticalSpeed: 3
   verticalRange: 8
-  horizontalSpeed: 4.5
   horizontalRange: 12
+  TimeToMove: 2
   patrolPoints: []
-  customSpeedFactor: 0.3
---- !u!114 &8843467396784176518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7870356645712279526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c1b94e4ba8d2964db21f26734a9d1f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  allowance: 0.1
+  connectedRigidBodies: []
 --- !u!251 &7588419948112531933
 PlatformEffector2D:
   m_ObjectHideFlags: 0
@@ -186,3 +174,15 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!114 &-5642286569284555925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7870356645712279526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c0ae4890f35a3c4b8dfd00e3311c1a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

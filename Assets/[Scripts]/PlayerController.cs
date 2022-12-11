@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Player Animations")]
     public Animator anims;
+    private Vector2 savedInputs;
 
     //------------------------
     //Init functions
@@ -67,6 +68,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         particleSystem = GetComponent<ParticleSystem>();
         anims = GetComponent<Animator>();
+        savedInputs = new Vector2(0.0f, 0.0f);
         rb.gravityScale = defaultGravityScale;
         isGrounded = false;
         isGroundedLast = false;
@@ -114,11 +116,16 @@ public class PlayerController : MonoBehaviour
 
         Move(input.x);
         ParseJumpInput(input.y);
-        ControlAnimations(input);
-
         GravityAdjust();
 
         isGroundedLast = isGrounded;
+
+        savedInputs = input;
+    }
+
+    private void Update()
+    {
+        ControlAnimations(savedInputs);
     }
     private void Move(float x)
     {
@@ -131,9 +138,9 @@ public class PlayerController : MonoBehaviour
 
             rb.velocity = new Vector2(clampedXVeclocity, rb.velocity.y);
 
-            if (!isGrounded)
+            if (isGrounded)
             {
-                //PlayRunningParticleEffect();
+                PlayRunningParticleEffect();
             }
         }
     }
@@ -228,31 +235,39 @@ public class PlayerController : MonoBehaviour
     //Player Animations
     private void ControlAnimations(Vector2 inputDirection)
     {
-        if(inputDirection.x != 0)
+        if(inputDirection.x != 0 && isGrounded)
         {
             anims.SetInteger("AnimState", (int)playerAnimStates.Run);
             return;
         }
 
+        if(!isGrounded && !coyoteTime)
+        { 
+            if(isTouchingWall && wallJumpEnabled)
+            {
+                anims.SetInteger("AnimState", (int)playerAnimStates.Wall);
+                return;
+            }
+
+            if(rb.velocity.y < 0)
+            {
+                anims.SetInteger("AnimState", (int)playerAnimStates.Fall);
+                return;
+            }
+
+            anims.SetInteger("AnimState", (int)playerAnimStates.Jump);
+            return;
+        }
+
         anims.SetInteger("AnimState", (int)playerAnimStates.Idle);
+        return;
 
     }
     //-----------------------
     //Particle Effects
     private void PlayRunningParticleEffect()
     {
-        particleSystem.Stop();
-        var main = particleSystem.main;
-        main.duration = runEffectDuration;
-        particleSystem.GetComponent<Renderer>().material.SetColor("_Color", runEffectColor);
-        particleSystem.Play();
-    }
-    private void PlayJumpingParticleEffect()
-    {
-        particleSystem.Stop();
-        var main = particleSystem.main;
-        main.duration = jumpEffectDuration;
-        particleSystem.GetComponent<Renderer>().material.SetColor("_Color", jumpEffectColor);
+        //particleSystem.GetComponent<Renderer>().material.SetColor("_Color", runEffectColor);
         particleSystem.Play();
     }
     //-----------------------
@@ -286,5 +301,9 @@ public class PlayerController : MonoBehaviour
 public enum playerAnimStates
 {
     Idle,
-    Run
+    Run,
+    Jump,
+    Fall,
+    Wall,
+    Die
 }

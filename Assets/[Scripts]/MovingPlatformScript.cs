@@ -9,11 +9,11 @@ public class MovingPlatformScript : MonoBehaviour
     public e_PlatformMoveDirections direction;
 
     [Header("Preset Movement Variables")]
-    public float verticalSpeed = 3.0f;
     public float verticalRange = 8.0f;
 
-    public float horizontalSpeed = 3.0f;
     public float horizontalRange = 8.0f;
+
+    public float TimeToMove = 2.0f;
 
     [Header("Custum Movement Variables")]
     public List<Transform> patrolPoints;
@@ -26,18 +26,14 @@ public class MovingPlatformScript : MonoBehaviour
     private float timer;
 
     private Rigidbody2D rb;
-
-    public List<Rigidbody2D> connectedRigidBodies;
     private void Start()
     {
         patrolPositions = new List<Vector2>();
-        connectedRigidBodies = new List<Rigidbody2D>();
         rb = GetComponent<Rigidbody2D>();
         timer = 0.0f;
         currentPathIndex = 0;
         startPosition = transform.position;
         DetermineEndPoint();
-        MoveTowardsNextPosition();
     }
 
     private void DetermineEndPoint()
@@ -76,55 +72,24 @@ public class MovingPlatformScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(((Vector2)transform.position - endPosition).magnitude < allowance) {
+        timer += Time.deltaTime * 1.0f / TimeToMove;
+
+        if (timer >= 1.0f) {
             currentPathIndex++;
             if(currentPathIndex >= patrolPositions.Count)
             {
                 currentPathIndex = 0;
             }
 
+            timer = 0.0f;
             endPosition = patrolPositions[currentPathIndex];
-            MoveTowardsNextPosition();
-
-            foreach (Rigidbody2D rbOther in connectedRigidBodies)
-            {
-                rbOther.velocity += rb.velocity;
-            }
+            startPosition = transform.position;
+        
         }
     }
 
-    private void MoveTowardsNextPosition()
+    private void Update()
     {
-        Vector3 moveDirection = (endPosition - (Vector2)transform.position).normalized;
-
-        rb.velocity = new Vector3(moveDirection.x * horizontalSpeed, moveDirection.y * verticalSpeed);
+        transform.position = Vector2.Lerp(startPosition, endPosition, timer);
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Rigidbody2D rbOther = collision.gameObject.GetComponent<Rigidbody2D>();
-        collision.transform.parent = transform;
-        if (rbOther) 
-        {
-            connectedRigidBodies.Add(rbOther);
-            rbOther.velocity = rb.velocity;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        Rigidbody2D rbOther = collision.gameObject.GetComponent<Rigidbody2D>();
-        collision.transform.parent = null;
-        if (rbOther)
-        {
-            connectedRigidBodies.Remove(rbOther);
-            rbOther.velocity = rb.velocity;
-        }
-    }
-}
-
-public class moveChildren
-{
-    public GameObject connectedObject;
-    public FixedJoint2D conectedJoint;
 }
