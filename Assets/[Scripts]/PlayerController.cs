@@ -161,6 +161,17 @@ public class PlayerController : MonoBehaviour
     }
     private void Jump(float force)
     {
+        if(transform.parent != null)
+        {
+            Rigidbody2D rbParent = transform.parent.GetComponent<Rigidbody2D>();
+
+            if(rbParent != null)
+            {
+                Debug.Log("combined velocity");
+                rb.velocity += rbParent.velocity;
+            }
+        }
+
         StopCoroutine("ResetJumpCooldown");
         rb.AddForce(Vector2.up * force, ForceMode2D.Impulse);
         jumpOnCooldown = true;

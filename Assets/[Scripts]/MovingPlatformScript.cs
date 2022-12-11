@@ -17,106 +17,114 @@ public class MovingPlatformScript : MonoBehaviour
 
     [Header("Custum Movement Variables")]
     public List<Transform> patrolPoints;
-    public float customSpeedFactor = 0.3f;
+    public float allowance = 0.1f;
 
     private int currentPathIndex     = 0;
     private List<Vector2> patrolPositions;
     private Vector2 startPosition;
-    private Vector2 destinationPoint;
+    private Vector2 endPosition;
     private float timer;
+
+    private Rigidbody2D rb;
+
+    public List<Rigidbody2D> connectedRigidBodies;
     private void Start()
     {
         patrolPositions = new List<Vector2>();
+        connectedRigidBodies = new List<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         timer = 0.0f;
         currentPathIndex = 0;
         startPosition = transform.position;
-        foreach(Transform pathPoint in patrolPoints)
-        {
-            Vector2 point = pathPoint.position;
+        DetermineEndPoint();
+        MoveTowardsNextPosition();
+    }
 
-            patrolPositions.Add(point);
+    private void DetermineEndPoint()
+    {
+        Debug.Log(direction);
+        switch(direction)
+        {
+            case e_PlatformMoveDirections.VERTICAL:
+                patrolPositions.Add(startPosition + new Vector2(0.0f, verticalRange));
+                
+                break;
+            case e_PlatformMoveDirections.HORIZONTAL:
+                patrolPositions.Add(startPosition + new Vector2(horizontalRange, 0.0f));
+                break;
+            case e_PlatformMoveDirections.DIAGONAL_UP_RIGHT:
+                patrolPositions.Add(startPosition + new Vector2(horizontalRange, verticalRange));
+                break;
+            case e_PlatformMoveDirections.DIAGONAL_UP_LEFT:
+                patrolPositions.Add(startPosition + new Vector2(-horizontalRange, verticalRange));
+                break;
+            case e_PlatformMoveDirections.CUSTOM:
+                foreach (Transform pathPoint in patrolPoints)
+                {
+                    Vector2 point = pathPoint.position;
+
+                    patrolPositions.Add(point);
+                }
+                break;
         }
 
         patrolPositions.Add(transform.position);
 
-        destinationPoint = patrolPositions[currentPathIndex];
+        Debug.Log(direction + patrolPositions.Count);
+        endPosition = patrolPositions[currentPathIndex];
     }
 
     private void FixedUpdate()
     {
-        if(direction == e_PlatformMoveDirections.CUSTOM)
-        {
-            if(timer <= 1.0f)
+        if(((Vector2)transform.position - endPosition).magnitude < allowance) {
+            currentPathIndex++;
+            if(currentPathIndex >= patrolPositions.Count)
             {
-                timer += customSpeedFactor;
+                currentPathIndex = 0;
             }
-            else if(timer >= 1.0f)
+
+            endPosition = patrolPositions[currentPathIndex];
+            MoveTowardsNextPosition();
+
+            foreach (Rigidbody2D rbOther in connectedRigidBodies)
             {
-                timer = 0.0f;
-                currentPathIndex++;
-
-                if(currentPathIndex >= patrolPositions.Count)
-                {
-                    currentPathIndex = 0;
-                }
-
-                startPosition = transform.position;
-                destinationPoint = patrolPositions[currentPathIndex];
+                rbOther.velocity += rb.velocity;
             }
         }
     }
-    private void Update()
+
+    private void MoveTowardsNextPosition()
     {
-        Move();
+        Vector3 moveDirection = (endPosition - (Vector2)transform.position).normalized;
+
+        rb.velocity = new Vector3(moveDirection.x * horizontalSpeed, moveDirection.y * verticalSpeed);
     }
-    public void Move()
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        switch (direction)
+        Rigidbody2D rbOther = collision.gameObject.GetComponent<Rigidbody2D>();
+        collision.transform.parent = transform;
+        if (rbOther) 
         {
-            case e_PlatformMoveDirections.HORIZONTAL:
-                MoveHorizontal();
-                break;
-            case e_PlatformMoveDirections.VERTICAL:
-                MoveVertical();
-                break;
-            case e_PlatformMoveDirections.DIAGONAL_UP_RIGHT:
-                MoveDiagonal_UP();
-                break;
-            case e_PlatformMoveDirections.DIAGONAL_UP_LEFT:
-                MoveDiagonal_Down();
-                break;
-            case e_PlatformMoveDirections.CUSTOM:
-                MoveCustom();
-                break;
+            connectedRigidBodies.Add(rbOther);
+            rbOther.velocity = rb.velocity;
         }
     }
 
-    public void MoveHorizontal()
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        transform.position = new Vector2(Mathf.PingPong(horizontalSpeed * Time.time, horizontalRange) + startPosition.x,
-            startPosition.y);
+        Rigidbody2D rbOther = collision.gameObject.GetComponent<Rigidbody2D>();
+        collision.transform.parent = null;
+        if (rbOther)
+        {
+            connectedRigidBodies.Remove(rbOther);
+            rbOther.velocity = rb.velocity;
+        }
     }
+}
 
-    private void MoveVertical()
-    {
-        transform.position = new Vector2(startPosition.x,
-            Mathf.PingPong(verticalSpeed * Time.time, verticalRange) + startPosition.y);
-    }
-
-    private void MoveDiagonal_UP()
-    {
-        transform.position = new Vector2(Mathf.PingPong(horizontalSpeed * Time.time, horizontalRange) + startPosition.x,
-           Mathf.PingPong(verticalSpeed * Time.time, verticalRange) + startPosition.y);
-    }
-
-    private void MoveDiagonal_Down()
-    {
-        transform.position = new Vector2(Mathf.PingPong(horizontalSpeed * Time.time, horizontalRange) + startPosition.x,
-           -Mathf.PingPong(verticalSpeed * Time.time, verticalRange) + startPosition.y);
-    }
-
-    private void MoveCustom()
-    {
-        transform.position = Vector2.Lerp(startPosition, destinationPoint, timer);
-    }
+public class moveChildren
+{
+    public GameObject connectedObject;
+    public FixedJoint2D conectedJoint;
 }
