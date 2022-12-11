@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7870356645712279523}
   - component: {fileID: 4604224908730880241}
   - component: {fileID: 8843467396784176518}
+  - component: {fileID: 7588419948112531933}
   m_Layer: 8
   m_Name: Moving Platform
   m_TagString: Untagged
@@ -28,13 +29,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7870356645712279526}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7870356645712279524
 SpriteRenderer:
@@ -99,7 +100,7 @@ BoxCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -147,11 +148,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3978cc831bcf9cb4e94b0de66eee99ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: 0
+  direction: 1
   verticalSpeed: 3
   verticalRange: 8
-  horizontalSpeed: 3
-  horizontalRange: 8
+  horizontalSpeed: 4.5
+  horizontalRange: 12
   patrolPoints: []
   customSpeedFactor: 0.3
 --- !u!114 &8843467396784176518
@@ -166,3 +167,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c1b94e4ba8d2964db21f26734a9d1f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!251 &7588419948112531933
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7870356645712279526}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
