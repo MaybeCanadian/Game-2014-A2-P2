@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public GameObject SpikesUI;
     public GameObject EnemiesUI;
     public GameObject CoinsUI;
+    public GameObject CheckPointsUI;
 
     private void Awake()
     {
@@ -39,6 +40,21 @@ public class UIManager : MonoBehaviour
             case UIName.DOUBLE_JUMP:
                 DoubleJumpUI.SetActive(vis);
                 break;
+            case UIName.MOVEMENT:
+                MovementUI.SetActive(vis);
+                break;
+            case UIName.SPIKES:
+                SpikesUI.SetActive(vis);
+                break;
+            case UIName.COINS:
+                CoinsUI.SetActive(vis);
+                break;
+            case UIName.ENEMIES:
+                EnemiesUI.SetActive(vis);
+                break;
+            case UIName.CHECKPOINTS:
+                CheckPointsUI.SetActive(vis);
+                break;
         }
     }
 }
@@ -52,5 +68,6 @@ public enum UIName
     MOVEMENT,
     SPIKES,
     ENEMIES,
-    COINS
+    COINS,
+    CHECKPOINTS
 }

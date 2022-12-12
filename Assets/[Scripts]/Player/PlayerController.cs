@@ -240,20 +240,28 @@ public class PlayerController : MonoBehaviour
     //Abilities
     public void UnlockAbility(Ability ability)
     {
+        UIName name = UIName.MOVEMENT;
+
         switch(ability)
         {
             case Ability.WALL_JUMP:
-                UIManager.instance.UIVisibility(UIName.WALL_JUMP, true);
+                name = UIName.WALL_JUMP;
                 wallJumpEnabled = true;
                 break;
             case Ability.DOUBLE_JUMP:
+                name = UIName.DOUBLE_JUMP;
                 UIManager.instance.UIVisibility(UIName.WALL_JUMP, true);
                 numberOfJumps++;
                 break;
         }
 
-        StartCoroutine(WaitForAbilityCloseInput(ability));
+        StartCoroutine(WaitForAbilityCloseInput(name));
     }    
+
+    public void ShowTutorial(UIName tutorial)
+    {
+        StartCoroutine(WaitForAbilityCloseInput(tutorial));
+    }
     //-----------------------
     //Particle Effects
     private void PlayRunningParticleEffect()
@@ -277,8 +285,9 @@ public class PlayerController : MonoBehaviour
         yield break;
     }
 
-    private IEnumerator WaitForAbilityCloseInput(Ability ability)
+    private IEnumerator WaitForAbilityCloseInput(UIName UI)
     {
+        UIManager.instance.UIVisibility(UI, true);
         isPaused = true;
 
         while(!Input.GetMouseButton(0))
@@ -288,15 +297,7 @@ public class PlayerController : MonoBehaviour
 
         isPaused = false;
 
-        switch (ability)
-        {
-            case Ability.WALL_JUMP:
-                UIManager.instance.UIVisibility(UIName.WALL_JUMP, false);
-                break;
-            case Ability.DOUBLE_JUMP:
-                UIManager.instance.UIVisibility(UIName.DOUBLE_JUMP, false);
-                break;
-        }
+        UIManager.instance.UIVisibility(UI, false);
         yield return null;
     }
     //-----------------------
