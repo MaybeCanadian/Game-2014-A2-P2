@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -56,6 +57,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Control Scheme")]
     public bool useMobileInput = false;
+    [Range(0.0f, 1.0f)]
+    public float verticalThreshold;
 
     [Header("Player Animations")]
     public bool isDead = false;
@@ -68,6 +71,9 @@ public class PlayerController : MonoBehaviour
     //Init functions
     private void Start()
     {
+        //useMobileInput = Application.isMobilePlatform;
+        useMobileInput = true;
+
         rb = GetComponent<Rigidbody2D>();
         particleSystem = GetComponent<ParticleSystem>();
         anims = GetComponent<PlayerAnimationScript>();

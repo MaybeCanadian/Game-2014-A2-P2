@@ -29,7 +29,6 @@ public class PlayerAttackingScript : MonoBehaviour
             }
         }
     }
-
     private void ResetAttackCoolDown()
     {
         attackOnCoolDown = false;
@@ -58,7 +57,6 @@ public class PlayerAttackingScript : MonoBehaviour
         }
 
     }
-
     private void HitTarget(Collider2D target)
     {
         EnemyController enemy = target.gameObject.GetComponent<EnemyController>();

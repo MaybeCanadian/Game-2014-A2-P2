@@ -50,8 +50,7 @@ public class EnemyAttack : MonoBehaviour
     }
     private void InRange()
     {
-        RaycastHit2D hit = Physics2D.Raycast(controller.aheadPoint.position, playerTransform.position, lineOfSightBlockingLayers);
-        Debug.Log(hit.collider.name);
+        RaycastHit2D hit = Physics2D.Linecast(transform.position, playerTransform.position, lineOfSightBlockingLayers);
         PlayerController player = hit.collider.gameObject.GetComponent<PlayerController>();
 
         if (player)
@@ -84,7 +83,7 @@ public class EnemyAttack : MonoBehaviour
     public void OnAttackEvent()
     {
         Collider2D[] collidersHit = Physics2D.OverlapCircleAll(transform.position, attackRange, detectionLayer);
-        float attackDirection = transform.localScale.x / Mathf.Abs(transform.localScale.x);
+        float attackDirection = 1.0f * transform.localScale.x / Mathf.Abs(transform.localScale.x);
 
         foreach (Collider2D col in collidersHit)
         {

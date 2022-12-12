@@ -52,6 +52,10 @@ public class PlayerCollisionScript : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-
+        SoundManager.instance.PlaySFX(SFXList.Hurt);
+        if(PlayerInfoManagerScript.instance.TakeDamage(damage))
+        {
+            anims.PlayDeathAnimation();
+        }
     }
 }

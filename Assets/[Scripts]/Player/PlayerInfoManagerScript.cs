@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerInfoManagerScript : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class PlayerInfoManagerScript : MonoBehaviour
 
     public TMP_Text coinCollectedText;
     public TMP_Text livesLeftText;
+
+    public Slider healthBar;
 
     private void Awake()
     {
@@ -38,11 +41,17 @@ public class PlayerInfoManagerScript : MonoBehaviour
         CurrentHealth = MaxHealth;
         CoinsCollected = 0;
         livesLeftText.text = LivesRemaining.ToString();
-        SoundManager.instance.PlayMusic(MusicTracks.So_delicate, 1.0f, true);
+        SoundManager.instance.PlayMusic(MusicTracks.Confrontations_in_the_shadows, 1.0f, true);
+        UpdateHealthBar();
     }
     public void UpdateRespawnPosition(Vector3 newPos)
     {
         currentRespawnPosition = newPos;
+    }
+
+    private void UpdateHealthBar()
+    {
+        healthBar.value = CurrentHealth / MaxHealth;
     }
     public void CollectCoin()
     {
@@ -58,10 +67,25 @@ public class PlayerInfoManagerScript : MonoBehaviour
             player.transform.position = currentRespawnPosition;
             LivesRemaining--;
             livesLeftText.text = LivesRemaining.ToString();
+            CurrentHealth = MaxHealth;
+            UpdateHealthBar();
         }
         else
         {
             SceneManager.LoadScene("Game Lose Screen");
         }
+    }
+
+    public bool TakeDamage(float damage)
+    {
+        CurrentHealth -= damage;
+        UpdateHealthBar();
+
+        if(CurrentHealth <= 0)
+        {
+            return true;
+        }
+
+        return false;
     }
 }

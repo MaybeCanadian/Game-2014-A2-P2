@@ -56,6 +56,10 @@ public class EnemyController : MonoBehaviour
     public void Die()
     {
         anims.SetInteger("AnimState", (int)EnemyAnimStates.Die);
+    }
+
+    public void OnDeathAnimEvent()
+    {
         Destroy(gameObject);
     }
 

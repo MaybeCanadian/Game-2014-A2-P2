@@ -410,7 +410,7 @@ MonoBehaviour:
   attackInCooldown: 0
   attackRange: 1
   attackArc: 90
-  attackDamage: 5
+  attackDamage: 10
   isDead: 0
   controller: {fileID: 0}
   anims: {fileID: 0}
