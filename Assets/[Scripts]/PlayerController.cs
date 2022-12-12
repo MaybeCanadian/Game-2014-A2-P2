@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
     [Header("Player Animations")]
     public Animator anims;
     private Vector2 savedInputs;
+    public bool isDead = false;
 
     //------------------------
     //Init functions
@@ -75,11 +76,19 @@ public class PlayerController : MonoBehaviour
         jumpOnCooldown = false;
         currentJumpNumber = 0;
         right = true;
+        isDead = false;
+
+        PlayerInfoManagerScript.instance.UpdateRespawnPosition(transform.position);
     }
     //-----------------------
     //Movement Functions
     private void FixedUpdate()
     {
+        if (isDead)
+        {
+            return;
+        }
+
         var hit = Physics2D.OverlapCircle(groundPoint.position, groundRadius, groundLayerMask);
         isGrounded = hit;
 
@@ -122,7 +131,6 @@ public class PlayerController : MonoBehaviour
 
         savedInputs = input;
     }
-
     private void Update()
     {
         ControlAnimations(savedInputs);
@@ -235,6 +243,12 @@ public class PlayerController : MonoBehaviour
     //Player Animations
     private void ControlAnimations(Vector2 inputDirection)
     {
+        if(isDead)
+        {
+            anims.SetInteger("AnimState", (int)playerAnimStates.Die);
+            return;
+        }
+
         if(inputDirection.x != 0 && isGrounded)
         {
             anims.SetInteger("AnimState", (int)playerAnimStates.Run);
@@ -269,6 +283,12 @@ public class PlayerController : MonoBehaviour
     {
         //particleSystem.GetComponent<Renderer>().material.SetColor("_Color", runEffectColor);
         particleSystem.Play();
+    }
+    //-----------------------
+    //Health Functions
+    private void Die()
+    {
+        isDead = true;
     }
     //-----------------------
     //Corutines
