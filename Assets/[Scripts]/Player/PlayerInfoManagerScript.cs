@@ -4,11 +4,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
+//--------------------------------
+//PlayerInforManagerScript - Evan Coffey 101267129
+//Handles most player stats like health and lives
 public class PlayerInfoManagerScript : MonoBehaviour
 {
     public static PlayerInfoManagerScript instance;
-
+    public float Timer = 0.0f;
     public Vector3 currentRespawnPosition;
 
     public float MaxHealth;
@@ -32,18 +34,37 @@ public class PlayerInfoManagerScript : MonoBehaviour
         else
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
         }
     }
 
     private void Start()
     {
         LivesRemaining = StartingLives;
+        Timer = 0.0f;
         CurrentHealth = MaxHealth;
         CoinsCollected = 0;
         livesLeftText.text = LivesRemaining.ToString();
         SoundManager.instance.PlayMusic(MusicTracks.Confrontations_in_the_shadows, 1.0f, true);
         UpdateHealthBar();
+        StartCoroutine(ActivateTimer());
     }
+
+    private IEnumerator ActivateTimer()
+    {
+        while (true)
+        {
+            Timer += Time.deltaTime;
+            yield return null;
+        }
+        yield return null;
+    }
+
+    private void Update()
+    {
+        Timer += Time.deltaTime;
+    }
+
     public void UpdateRespawnPosition(Vector3 newPos)
     {
         currentRespawnPosition = newPos;
@@ -72,6 +93,7 @@ public class PlayerInfoManagerScript : MonoBehaviour
         }
         else
         {
+            StopAllCoroutines();
             SceneManager.LoadScene("Game Lose Screen");
         }
     }

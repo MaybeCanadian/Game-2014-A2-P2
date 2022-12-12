@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//--------------------------------------
+//Player Attacking Scripts - 101278129 Evan Coffey
+//Controls the player attacking
 public class PlayerAttackingScript : MonoBehaviour
 {
     public bool attackOnCoolDown = false;
@@ -10,9 +12,12 @@ public class PlayerAttackingScript : MonoBehaviour
     public float attackArc = 90.0f;
     public LayerMask attackLayerMask;
 
+    public bool useMobileInput;
+
     public PlayerAnimationScript anims;
     private void Start()
     {
+        useMobileInput = Application.isMobilePlatform;
         anims = GetComponent<PlayerAnimationScript>();
         attackOnCoolDown = false;
     }
@@ -21,11 +26,23 @@ public class PlayerAttackingScript : MonoBehaviour
     {
         if (!attackOnCoolDown)
         {
-            if (Input.GetMouseButtonDown(0) || MobileInputController.instance.AttackButtonDown)
+            if (useMobileInput)
             {
-                attackOnCoolDown = true;
-                anims.PlayAttackAnimation();
-                Invoke("ResetAttackCoolDown", attackCoolDown);
+                if (MobileInputController.instance.AttackButtonDown)
+                {
+                    attackOnCoolDown = true;
+                    anims.PlayAttackAnimation();
+                    Invoke("ResetAttackCoolDown", attackCoolDown);
+                }
+            }
+            else
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+                    attackOnCoolDown = true;
+                    anims.PlayAttackAnimation();
+                    Invoke("ResetAttackCoolDown", attackCoolDown);
+                }
             }
         }
     }

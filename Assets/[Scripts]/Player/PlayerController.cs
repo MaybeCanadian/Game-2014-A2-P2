@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+//-----------------------------------------------
+//Player Controller.cs - Evan Coffey 101278129
+//Controlls player movements
 
 public class PlayerController : MonoBehaviour
 {
@@ -282,10 +285,11 @@ public class PlayerController : MonoBehaviour
         UIManager.instance.UIVisibility(UI, true);
         isPaused = true;
 
-        while(!Input.GetMouseButton(0))
-        {
-            yield return null;
-        }
+        
+            while (!Input.GetMouseButton(0))
+            {
+                yield return null;
+            }
 
         isPaused = false;
 

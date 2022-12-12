@@ -7,6 +7,11 @@ public class CheckpointScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PlayerInfoManagerScript.instance.UpdateRespawnPosition(transform.position);
+        PlayerController player = collision.GetComponent<PlayerController>();
+
+        if (player)
+        {
+            PlayerInfoManagerScript.instance.UpdateRespawnPosition(transform.position);
+        }
     }
 }

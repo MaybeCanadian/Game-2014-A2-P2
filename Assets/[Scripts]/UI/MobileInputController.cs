@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//------------------------------
+//Mobile input controller - Evan Coffey 101267129
+//Handles getting input from buttons and hides input when not on mobile
 public class MobileInputController : MonoBehaviour
 {
     public static MobileInputController instance;

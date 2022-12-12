@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//------------------------------------
+//Player CollisionScript
+//Controls the collisions for the player
 public class PlayerCollisionScript : MonoBehaviour
 {
     PlayerController controller;

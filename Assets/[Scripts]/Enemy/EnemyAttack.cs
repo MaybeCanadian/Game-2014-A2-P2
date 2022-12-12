@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//------------------------------------------
+//Enemy Attacks - Evan Coffey  101267129
+//Controls how enemies attack
 public class EnemyAttack : MonoBehaviour
 {
     public bool hasLOS = false;

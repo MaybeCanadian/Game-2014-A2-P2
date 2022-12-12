@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+//------------------------------
+//Enemy Controller - Evan Coffey 101267129
+//Controls enemy movements
 public class EnemyController : MonoBehaviour
 {
     public float maxHealth;
