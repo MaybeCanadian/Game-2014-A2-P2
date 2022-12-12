@@ -9,6 +9,10 @@ public class UIManager : MonoBehaviour
     public GameObject GameUI;
     public GameObject WallJumpUI;
     public GameObject DoubleJumpUI;
+    public GameObject MovementUI;
+    public GameObject SpikesUI;
+    public GameObject EnemiesUI;
+    public GameObject CoinsUI;
 
     private void Awake()
     {
@@ -44,5 +48,9 @@ public enum UIName
 {
     GAME,
     WALL_JUMP,
-    DOUBLE_JUMP
+    DOUBLE_JUMP,
+    MOVEMENT,
+    SPIKES,
+    ENEMIES,
+    COINS
 }
