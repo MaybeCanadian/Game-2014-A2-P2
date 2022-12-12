@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInfoManagerScript : MonoBehaviour
 {
@@ -55,6 +56,10 @@ public class PlayerInfoManagerScript : MonoBehaviour
             player.transform.position = currentRespawnPosition;
             LivesRemaining--;
             livesLeftText.text = LivesRemaining.ToString();
+        }
+        else
+        {
+            SceneManager.LoadScene("Game Lose Screen");
         }
     }
 }

@@ -352,69 +352,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 356677616}
   m_CullTransparentMesh: 1
---- !u!1001 &468009642
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 2
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4020654824120945297, guid: fb25bfe7214b9474e8dae75b70b1f42e, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020654824120945297, guid: fb25bfe7214b9474e8dae75b70b1f42e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1309.6178
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020654824120945297, guid: fb25bfe7214b9474e8dae75b70b1f42e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 672.954
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020654824120945297, guid: fb25bfe7214b9474e8dae75b70b1f42e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 3.4610996
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020654824120945297, guid: fb25bfe7214b9474e8dae75b70b1f42e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020654824120945297, guid: fb25bfe7214b9474e8dae75b70b1f42e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020654824120945297, guid: fb25bfe7214b9474e8dae75b70b1f42e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020654824120945297, guid: fb25bfe7214b9474e8dae75b70b1f42e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020654824120945297, guid: fb25bfe7214b9474e8dae75b70b1f42e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020654824120945297, guid: fb25bfe7214b9474e8dae75b70b1f42e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4020654824120945297, guid: fb25bfe7214b9474e8dae75b70b1f42e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5437470427621588406, guid: fb25bfe7214b9474e8dae75b70b1f42e, type: 3}
-      propertyPath: m_Name
-      value: GameController
-      objectReference: {fileID: 0}
-    - target: {fileID: 8760704151181228619, guid: fb25bfe7214b9474e8dae75b70b1f42e, type: 3}
-      propertyPath: nextScene
-      value: Level 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_AddedGameObjects: []
-  m_SourcePrefab: {fileID: 100100000, guid: fb25bfe7214b9474e8dae75b70b1f42e, type: 3}
 --- !u!1 &518007420
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,7 +435,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 518007423}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 683883259}
+        m_TargetAssemblyTypeName: MainMenuUIController, Assembly-CSharp
+        m_MethodName: OnPlayButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &518007423
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -684,8 +633,9 @@ GameObject:
   - component: {fileID: 683883257}
   - component: {fileID: 683883256}
   - component: {fileID: 683883255}
+  - component: {fileID: 683883259}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Main Menu Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -779,6 +729,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &683883259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683883254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3710d23994e51544b0c7b8580730635, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &712528365
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,7 +754,7 @@ GameObject:
   - component: {fileID: 712528368}
   - component: {fileID: 712528367}
   m_Layer: 5
-  m_Name: Records
+  m_Name: Quit Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -862,7 +824,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 712528368}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 683883259}
+        m_TargetAssemblyTypeName: MainMenuUIController, Assembly-CSharp
+        m_MethodName: OnQuitButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &712528368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -959,7 +933,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Records
+  m_text: Quit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1186,7 +1160,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1363028045}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 683883259}
+        m_TargetAssemblyTypeName: MainMenuUIController, Assembly-CSharp
+        m_MethodName: OnLoadButtonPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1363028045
 MonoBehaviour:
   m_ObjectHideFlags: 0
