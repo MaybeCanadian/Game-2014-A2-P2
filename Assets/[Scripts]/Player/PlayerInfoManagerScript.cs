@@ -13,7 +13,11 @@ public class PlayerInfoManagerScript : MonoBehaviour
     public float CurrentHealth;
     public float CoinsCollected;
 
+    public int StartingLives;
+    public int LivesRemaining;
+
     public TMP_Text coinCollectedText;
+    public TMP_Text livesLeftText;
 
     private void Awake()
     {
@@ -29,8 +33,10 @@ public class PlayerInfoManagerScript : MonoBehaviour
 
     private void Start()
     {
+        LivesRemaining = StartingLives;
         CurrentHealth = MaxHealth;
         CoinsCollected = 0;
+        livesLeftText.text = LivesRemaining.ToString();
     }
     public void UpdateRespawnPosition(Vector3 newPos)
     {
@@ -40,5 +46,15 @@ public class PlayerInfoManagerScript : MonoBehaviour
     {
         CoinsCollected++;
         coinCollectedText.text = CoinsCollected.ToString();
+    }
+
+    public void Respawn(GameObject player)
+    {
+        if(LivesRemaining > 0)
+        {
+            player.transform.position = currentRespawnPosition;
+            LivesRemaining--;
+            livesLeftText.text = LivesRemaining.ToString();
+        }
     }
 }

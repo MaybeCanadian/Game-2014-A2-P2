@@ -57,6 +57,11 @@ public class PlayerAnimationScript : MonoBehaviour
             return;
         }
 
+        if(controller.isPaused)
+        {
+            PlayAnimation(playerAnimStates.Idle);
+        }
+
         if (controller.isDead)
         {
             PlayAnimation(playerAnimStates.Die);

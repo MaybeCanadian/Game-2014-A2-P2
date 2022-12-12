@@ -61,6 +61,9 @@ public class PlayerController : MonoBehaviour
     public bool isDead = false;
     public PlayerAnimationScript anims;
 
+    [Header("GamePausing")]
+    public bool isPaused = false;
+
     //------------------------
     //Init functions
     private void Start()
@@ -82,7 +85,7 @@ public class PlayerController : MonoBehaviour
     //Movement Functions
     private void FixedUpdate()
     {
-        if (isDead)
+        if (isDead || isPaused)
         {
             return;
         }
@@ -234,8 +237,23 @@ public class PlayerController : MonoBehaviour
         return input;
     }
     //-----------------------
-    //Player Animations
-    
+    //Abilities
+    public void UnlockAbility(Ability ability)
+    {
+        switch(ability)
+        {
+            case Ability.WALL_JUMP:
+                UIManager.instance.UIVisibility(UIName.WALL_JUMP, true);
+                wallJumpEnabled = true;
+                break;
+            case Ability.DOUBLE_JUMP:
+                UIManager.instance.UIVisibility(UIName.WALL_JUMP, true);
+                numberOfJumps++;
+                break;
+        }
+
+        StartCoroutine(WaitForAbilityCloseInput(ability));
+    }    
     //-----------------------
     //Particle Effects
     private void PlayRunningParticleEffect()
@@ -257,6 +275,29 @@ public class PlayerController : MonoBehaviour
 
         coyoteTime = false;
         yield break;
+    }
+
+    private IEnumerator WaitForAbilityCloseInput(Ability ability)
+    {
+        isPaused = true;
+
+        while(!Input.GetMouseButton(0))
+        {
+            yield return null;
+        }
+
+        isPaused = false;
+
+        switch (ability)
+        {
+            case Ability.WALL_JUMP:
+                UIManager.instance.UIVisibility(UIName.WALL_JUMP, false);
+                break;
+            case Ability.DOUBLE_JUMP:
+                UIManager.instance.UIVisibility(UIName.DOUBLE_JUMP, false);
+                break;
+        }
+        yield return null;
     }
     //-----------------------
     //Gizmo Draws

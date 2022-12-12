@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Spike
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Platform
   - Wall Jump
   - Enemy
-  - 
+  - Door
   - 
   - 
   - 
