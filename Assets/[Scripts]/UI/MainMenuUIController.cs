@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuUIController : MonoBehaviour
 {
+
+    private void Start()
+    {
+        SoundManager.instance.PlayMusic(MusicTracks.Desolation, 1.0f, true);
+    }
     public void OnPlayButtonPressed()
     {
         SceneManager.LoadScene("Level 1");

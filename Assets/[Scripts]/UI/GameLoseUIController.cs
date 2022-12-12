@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class GameLoseUIController : MonoBehaviour
 {
+
+    private void Start()
+    {
+        SoundManager.instance.PlayMusic(MusicTracks.Stillness_of_the_night, 1.0f, true);
+    }
     public void OnMainMenuButtonPressed()
     {
         SceneManager.LoadScene("Main Manu");
