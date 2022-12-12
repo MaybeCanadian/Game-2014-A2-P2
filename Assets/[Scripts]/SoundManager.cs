@@ -50,6 +50,7 @@ public class SoundManager : MonoBehaviour
         SFXClipList.Add(Resources.Load<AudioClip>("Audio/Effects/Jump"));
         SFXClipList.Add(Resources.Load<AudioClip>("Audio/Effects/Weapon_whoosh"));
         SFXClipList.Add(Resources.Load<AudioClip>("Audio/Effects/Footstep"));
+        SFXClipList.Add(Resources.Load<AudioClip>("Audio/Effects/Hit"));
     }
 
     public void PlayMusic(MusicTracks track, float volume = 1.0f, bool loop = true)
@@ -85,5 +86,6 @@ public enum SFXList
     Hurt,
     Jump,
     Weapon_Whoosh,
-    Footstep
+    Footstep,
+    Hit
 }

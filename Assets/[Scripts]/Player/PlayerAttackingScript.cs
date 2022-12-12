@@ -65,7 +65,7 @@ public class PlayerAttackingScript : MonoBehaviour
 
         if(enemy)
         {
-
+            enemy.TakeDamage(20.0f);
         }
 
         BreakableDoorScript door = target.gameObject.GetComponent<BreakableDoorScript>();

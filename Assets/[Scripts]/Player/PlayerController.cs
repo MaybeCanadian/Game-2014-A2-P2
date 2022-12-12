@@ -239,7 +239,6 @@ public class PlayerController : MonoBehaviour
                 break;
             case Ability.DOUBLE_JUMP:
                 name = UIName.DOUBLE_JUMP;
-                UIManager.instance.UIVisibility(UIName.WALL_JUMP, true);
                 numberOfJumps++;
                 break;
         }
