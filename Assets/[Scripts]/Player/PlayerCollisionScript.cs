@@ -16,7 +16,6 @@ public class PlayerCollisionScript : MonoBehaviour
         anims = GetComponent<PlayerAnimationScript>();
         Invul = false;
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         SpikeScript spikes = collision.gameObject.GetComponent<SpikeScript>();
@@ -36,7 +35,6 @@ public class PlayerCollisionScript : MonoBehaviour
             SoundManager.instance.PlaySFX(SFXList.Hurt);
         }
     }
-
     public void OnDeathAnimFinished()
     {
         if (Invul == false)
@@ -47,9 +45,13 @@ public class PlayerCollisionScript : MonoBehaviour
             Invoke("ResetInvul", deathInvulTime);
         }
     }
-
     private void ResetInvul()
     {
         Invul = false;
+    }
+
+    public void TakeDamage(float damage)
+    {
+
     }
 }
