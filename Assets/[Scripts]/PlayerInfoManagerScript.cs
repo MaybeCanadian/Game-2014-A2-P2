@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerInfoManagerScript : MonoBehaviour
@@ -11,6 +12,8 @@ public class PlayerInfoManagerScript : MonoBehaviour
     public float MaxHealth;
     public float CurrentHealth;
     public float CoinsCollected;
+
+    public TMP_Text coinCollectedText;
 
     private void Awake()
     {
@@ -35,6 +38,7 @@ public class PlayerInfoManagerScript : MonoBehaviour
     }
     public void CollectCoin()
     {
-
+        CoinsCollected++;
+        coinCollectedText.text = CoinsCollected.ToString();
     }
 }
