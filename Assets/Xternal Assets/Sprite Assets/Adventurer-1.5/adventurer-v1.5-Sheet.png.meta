@@ -1004,7 +1004,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_41
+      name: Attack1
       rect:
         serializedVersion: 2
         x: 300
@@ -1025,7 +1025,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_42
+      name: Attack2
       rect:
         serializedVersion: 2
         x: 0
@@ -1046,7 +1046,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: A
+      name: Attack3
       rect:
         serializedVersion: 2
         x: 50
@@ -1067,7 +1067,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_44
+      name: Attack4
       rect:
         serializedVersion: 2
         x: 100
@@ -1088,7 +1088,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_45
+      name: Attack5
       rect:
         serializedVersion: 2
         x: 150
@@ -1109,7 +1109,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_46
+      name: Attack6
       rect:
         serializedVersion: 2
         x: 200
@@ -1130,7 +1130,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_47
+      name: Attack7
       rect:
         serializedVersion: 2
         x: 250
@@ -1151,7 +1151,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_48
+      name: Attack8
       rect:
         serializedVersion: 2
         x: 300
@@ -1172,7 +1172,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_49
+      name: Attack9
       rect:
         serializedVersion: 2
         x: 0
@@ -1193,7 +1193,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_50
+      name: Attack10
       rect:
         serializedVersion: 2
         x: 50
@@ -1214,7 +1214,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_51
+      name: Attack11
       rect:
         serializedVersion: 2
         x: 100
@@ -1235,7 +1235,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_52
+      name: Attack12
       rect:
         serializedVersion: 2
         x: 150
@@ -1256,7 +1256,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_53
+      name: dasdca
       rect:
         serializedVersion: 2
         x: 200
@@ -1298,7 +1298,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_55
+      name: afwfa
       rect:
         serializedVersion: 2
         x: 300
@@ -1319,7 +1319,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_56
+      name: geafwd
       rect:
         serializedVersion: 2
         x: 0
@@ -1340,7 +1340,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_57
+      name: fawfdas
       rect:
         serializedVersion: 2
         x: 50
@@ -1361,7 +1361,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_58
+      name: fawsda
       rect:
         serializedVersion: 2
         x: 100
@@ -2159,7 +2159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_96
+      name: JumpAttack1
       rect:
         serializedVersion: 2
         x: 250
@@ -2180,10 +2180,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_97
+      name: JumpAttack2
       rect:
         serializedVersion: 2
-        x: 300
+        x: 301
         y: 74
         width: 50
         height: 37
@@ -2201,7 +2201,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_98
+      name: JumpAttack3
       rect:
         serializedVersion: 2
         x: 0
@@ -2222,7 +2222,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_99
+      name: JumpAttack4
       rect:
         serializedVersion: 2
         x: 50
@@ -2243,7 +2243,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_100
+      name: JumpAttack5
       rect:
         serializedVersion: 2
         x: 100
@@ -2264,7 +2264,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_101
+      name: JumpAttack6
       rect:
         serializedVersion: 2
         x: 150
@@ -2285,7 +2285,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: adventurer-v1.5-Sheet_102
+      name: JumpAttack7
       rect:
         serializedVersion: 2
         x: 200
@@ -2443,42 +2443,41 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       adventurer-v1.5-Sheet_69: 1532226810
+      Attack2: 1811801619
       adventurer-v1.5-Sheet_76: 804396909
       adventurer-v1.5-Sheet_71: 818835582
       adventurer-v1.5-Sheet_30: -2057689057
+      Attack9: 1597655970
       adventurer-v1.5-Sheet_7: 1284783356
       roll1: -281400462
       adventurer-v1.5-Sheet_105: -1249085578
+      Attack8: -1628172128
       idle 2: -1310068298
-      adventurer-v1.5-Sheet_42: 1811801619
       Jump3: 226395455
       Jump1: 671604567
-      adventurer-v1.5-Sheet_102: -249458630
       adventurer-v1.5-Sheet_31: -889895810
       adventurer-v1.5-Sheet_62: -296683277
-      adventurer-v1.5-Sheet_52: 2061479963
       Wall2: -937628985
       adventurer-v1.5-Sheet_89: -271557757
       Fall1: 1404683868
       adventurer-v1.5-Sheet_60: -127637149
-      adventurer-v1.5-Sheet_98: 110715501
-      adventurer-v1.5-Sheet_45: 787705805
-      adventurer-v1.5-Sheet_73: -1973545066
       Die2: -1942135543
+      adventurer-v1.5-Sheet_73: -1973545066
+      Attack6: 555080050
       Idle 1: -1556479498
+      JumpAttack7: -249458630
       adventurer-v1.5-Sheet_35: -597835182
       idle 4: 684097656
       adventurer-v1.5-Sheet_15: 382575491
       adventurer-v1.5-Sheet_24: -810992611
       adventurer-v1.5-Sheet_5: -316961633
-      adventurer-v1.5-Sheet_41: 1555172652
+      JumpAttack1: 1866129561
       adventurer-v1.5-Sheet_94: 1812258683
       adventurer-v1.5-Sheet_86: -621974821
       Fall2: -994748647
-      adventurer-v1.5-Sheet_44: 1898161851
-      adventurer-v1.5-Sheet_101: 1629766527
       adventurer-v1.5-Sheet_88: 386201427
       adventurer-v1.5-Sheet_106: 1566002284
+      dasdca: -1041360797
       adventurer-v1.5-Sheet_4: -1708678679
       adventurer-v1.5-Sheet_104: -1561586717
       Wall1: -550084151
@@ -2486,42 +2485,44 @@ TextureImporter:
       adventurer-v1.5-Sheet_39: -1715215336
       adventurer-v1.5-Sheet_93: 2106569271
       adventurer-v1.5-Sheet_75: -140480662
-      run 5: -1602798727
       run 6: 194322086
-      adventurer-v1.5-Sheet_56: -105392718
+      run 5: -1602798727
+      Attack11: 831698838
       roll3: -632861607
       adventurer-v1.5-Sheet_90: -686043146
-      A: 848799868
+      JumpAttack6: 1629766527
       adventurer-v1.5-Sheet_37: 327812117
+      Attack12: 2061479963
       adventurer-v1.5-Sheet_95: 649659999
       adventurer-v1.5-Sheet_87: 1428694786
       adventurer-v1.5-Sheet_54: 1880460020
+      JumpAttack5: 1260277507
+      geafwd: -105392718
       adventurer-v1.5-Sheet_92: -1506071680
-      adventurer-v1.5-Sheet_100: 1260277507
-      adventurer-v1.5-Sheet_53: -1041360797
-      adventurer-v1.5-Sheet_97: -467065616
+      Attack3: 848799868
+      JumpAttack4: -1642122854
       adventurer-v1.5-Sheet_36: 722528615
       run 3: -1111208541
       adventurer-v1.5-Sheet_74: -1390283731
       adventurer-v1.5-Sheet_29: -1331222043
+      JumpAttack2: -467065616
       Jump2: -1765594174
-      adventurer-v1.5-Sheet_48: -1628172128
+      fawfdas: 1591985461
       adventurer-v1.5-Sheet_81: -1471299026
       adventurer-v1.5-Sheet_108: 949941038
       adventurer-v1.5-Sheet_85: 1682864048
-      adventurer-v1.5-Sheet_51: 831698838
-      adventurer-v1.5-Sheet_58: 1447496550
       adventurer-v1.5-Sheet_27: 2055551997
       idle 3: 1280508548
+      Attack5: 787705805
       adventurer-v1.5-Sheet_82: 1334855979
-      adventurer-v1.5-Sheet_99: -1642122854
+      afwfa: 1435714396
       adventurer-v1.5-Sheet_83: 973828408
-      adventurer-v1.5-Sheet_96: 1866129561
+      Attack1: 1555172652
       adventurer-v1.5-Sheet_61: -1707610295
-      adventurer-v1.5-Sheet_50: -1754139439
       adventurer-v1.5-Sheet_72: -16565884
       adventurer-v1.5-Sheet_77: -368840671
       adventurer-v1.5-Sheet_64: -854041389
+      Attack10: -1754139439
       adventurer-v1.5-Sheet_28: -1842337112
       adventurer-v1.5-Sheet_59: 644575104
       adventurer-v1.5-Sheet_32: -891023045
@@ -2533,22 +2534,21 @@ TextureImporter:
       adventurer-v1.5-Sheet_103: -1174605217
       adventurer-v1.5-Sheet_26: 94673227
       adventurer-v1.5-Sheet_63: -1556781756
-      adventurer-v1.5-Sheet_57: 1591985461
       adventurer-v1.5-Sheet_84: -361331735
+      run 4: -1225977122
       adventurer-v1.5-Sheet_6: 717122745
       adventurer-v1.5-Sheet_91: 1552341347
       roll2: -1693756540
-      run 4: -1225977122
-      adventurer-v1.5-Sheet_49: 1597655970
-      adventurer-v1.5-Sheet_46: 555080050
-      adventurer-v1.5-Sheet_55: 1435714396
-      adventurer-v1.5-Sheet_33: -327044060
+      fawsda: 1447496550
+      JumpAttack3: 110715501
       Die4: -445778021
+      adventurer-v1.5-Sheet_33: -327044060
       adventurer-v1.5-Sheet_34: 31947619
       adventurer-v1.5-Sheet_40: -1909515009
+      Attack7: 546277372
       Die3: -207304463
+      Attack4: 1898161851
       adventurer-v1.5-Sheet_38: -1810649369
-      adventurer-v1.5-Sheet_47: 546277372
       adventurer-v1.5-Sheet_14: -639120269
       run 2: 745236013
   spritePackingTag: 

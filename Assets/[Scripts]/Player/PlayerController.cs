@@ -244,12 +244,6 @@ public class PlayerController : MonoBehaviour
         particleSystem.Play();
     }
     //-----------------------
-    //Health Functions
-    private void Die()
-    {
-        isDead = true;
-    }
-    //-----------------------
     //Corutines
     private IEnumerator CoyoteTimeCoroutine()
     {

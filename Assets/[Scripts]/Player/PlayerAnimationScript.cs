@@ -11,15 +11,16 @@ public class PlayerAnimationScript : MonoBehaviour
     public Rigidbody2D rb;
 
     public Vector2 savedDirection;
+    public bool isAttacking = false;
 
     private void Start()
     {
         anims = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         controller = GetComponent<PlayerController>();
+        isAttacking = false;
     }
-
-    public void PlayAnimation(playerAnimStates animation)
+    private void PlayAnimation(playerAnimStates animation)
     {
         anims.SetInteger("AnimState", (int)animation);
     }
@@ -27,8 +28,35 @@ public class PlayerAnimationScript : MonoBehaviour
     {
         ControlAnimations(savedDirection);
     }
+    public void PlayAttackAnimation()
+    {
+        if (controller.inAir)
+        {
+            PlayAnimation(playerAnimStates.JumpAttack);
+        }
+        else
+        {
+            PlayAnimation(playerAnimStates.Attack);
+        }
+
+        isAttacking = true;
+        return;
+    }
+    public void PlayDeathAnimation()
+    {
+        PlayAnimation(playerAnimStates.Die);
+    }
+    public void AttackFinished()
+    {
+        isAttacking = false;
+    }
     private void ControlAnimations(Vector2 inputDirection)
     {
+        if(isAttacking)
+        {
+            return;
+        }
+
         if (controller.isDead)
         {
             PlayAnimation(playerAnimStates.Die);
@@ -71,5 +99,7 @@ public enum playerAnimStates
     Jump,
     Fall,
     Wall,
-    Die
+    Die,
+    Attack,
+    JumpAttack
 }
