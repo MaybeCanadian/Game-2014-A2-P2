@@ -173,23 +173,12 @@ public class PlayerController : MonoBehaviour
     }
     private void Jump(float force)
     {
-        if(transform.parent != null)
-        {
-            Rigidbody2D rbParent = transform.parent.GetComponent<Rigidbody2D>();
-
-            if(rbParent != null)
-            {
-                Debug.Log("combined velocity");
-                rb.velocity += rbParent.velocity;
-            }
-        }
-
         StopCoroutine("ResetJumpCooldown");
         rb.AddForce(Vector2.up * force, ForceMode2D.Impulse);
         jumpOnCooldown = true;
         Invoke("ResetJumpCooldown", jumpCooldown);
 
-        //PlayJumpingParticleEffect();
+        SoundManager.instance.PlaySFX(SFXList.Jump);
         currentJumpNumber++;
     }
     private void WallJump(float upForce, float sideForce)
@@ -257,7 +246,6 @@ public class PlayerController : MonoBehaviour
 
         StartCoroutine(WaitForAbilityCloseInput(name));
     }    
-
     public void ShowTutorial(UIName tutorial)
     {
         StartCoroutine(WaitForAbilityCloseInput(tutorial));
@@ -284,7 +272,6 @@ public class PlayerController : MonoBehaviour
         coyoteTime = false;
         yield break;
     }
-
     private IEnumerator WaitForAbilityCloseInput(UIName UI)
     {
         UIManager.instance.UIVisibility(UI, true);

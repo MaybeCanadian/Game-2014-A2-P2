@@ -38,6 +38,7 @@ public class PlayerInfoManagerScript : MonoBehaviour
         CurrentHealth = MaxHealth;
         CoinsCollected = 0;
         livesLeftText.text = LivesRemaining.ToString();
+        SoundManager.instance.PlayMusic(MusicTracks.Dark_cave, 1.0f, true);
     }
     public void UpdateRespawnPosition(Vector3 newPos)
     {
@@ -47,6 +48,7 @@ public class PlayerInfoManagerScript : MonoBehaviour
     {
         CoinsCollected++;
         coinCollectedText.text = CoinsCollected.ToString();
+        SoundManager.instance.PlaySFX(SFXList.Coin);
     }
 
     public void Respawn(GameObject player)

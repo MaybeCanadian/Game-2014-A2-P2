@@ -37,6 +37,7 @@ public class PlayerAttackingScript : MonoBehaviour
 
     private void Attack()
     {
+        SoundManager.instance.PlaySFX(SFXList.Weapon_Whoosh);
         Collider2D[] collidersHit = Physics2D.OverlapCircleAll(transform.position, attackRange, attackLayerMask);
         float attackDirection = transform.localScale.x / Mathf.Abs(transform.localScale.x);
 

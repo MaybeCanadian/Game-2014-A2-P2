@@ -19,8 +19,6 @@ public class PlayerCollisionScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
-        //Debug.Log("Hit " + collision.gameObject.name);
         SpikeScript spikes = collision.gameObject.GetComponent<SpikeScript>();
 
         if (spikes)
@@ -28,6 +26,14 @@ public class PlayerCollisionScript : MonoBehaviour
             Debug.Log("Hit spikes");
             controller.isDead = true;
             anims.PlayDeathAnimation();
+            return;
+        }
+
+        EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
+
+        if(enemy)
+        {
+            SoundManager.instance.PlaySFX(SFXList.Hurt);
         }
     }
 

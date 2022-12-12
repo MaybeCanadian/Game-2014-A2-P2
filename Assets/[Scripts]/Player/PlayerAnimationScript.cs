@@ -96,6 +96,11 @@ public class PlayerAnimationScript : MonoBehaviour
         return;
 
     }
+
+    public void OnFootstepEvent()
+    {
+        SoundManager.instance.PlaySFX(SFXList.Footstep);
+    }
 }
 public enum playerAnimStates
 {
