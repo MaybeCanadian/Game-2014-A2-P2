@@ -71,8 +71,7 @@ public class PlayerController : MonoBehaviour
     //Init functions
     private void Start()
     {
-        //useMobileInput = Application.isMobilePlatform;
-        useMobileInput = true;
+        useMobileInput = Application.isMobilePlatform;
 
         rb = GetComponent<Rigidbody2D>();
         particleSystem = GetComponent<ParticleSystem>();
@@ -222,7 +221,8 @@ public class PlayerController : MonoBehaviour
     //Input Collection
     private Vector2 GetMobileInput()
     {
-        Vector2 input = new Vector2(0.0f, 0.0f);
+        Vector2 input = MobileInputController.instance.GetJoystickInput();
+        input.y = MobileInputController.instance.JumpButtonDown ? 1.0f : 0.0f;
         return input;
     }
     private Vector2 GetKeyboardInput()

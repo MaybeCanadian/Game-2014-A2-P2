@@ -21,7 +21,7 @@ public class PlayerAttackingScript : MonoBehaviour
     {
         if (!attackOnCoolDown)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) || MobileInputController.instance.AttackButtonDown)
             {
                 attackOnCoolDown = true;
                 anims.PlayAttackAnimation();
