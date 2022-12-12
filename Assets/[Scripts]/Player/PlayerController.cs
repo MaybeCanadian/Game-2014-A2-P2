@@ -58,9 +58,8 @@ public class PlayerController : MonoBehaviour
     public bool useMobileInput = false;
 
     [Header("Player Animations")]
-    public Animator anims;
-    private Vector2 savedInputs;
     public bool isDead = false;
+    public PlayerAnimationScript anims;
 
     //------------------------
     //Init functions
@@ -68,8 +67,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         particleSystem = GetComponent<ParticleSystem>();
-        anims = GetComponent<Animator>();
-        savedInputs = new Vector2(0.0f, 0.0f);
+        anims = GetComponent<PlayerAnimationScript>();
         rb.gravityScale = defaultGravityScale;
         isGrounded = false;
         isGroundedLast = false;
@@ -129,11 +127,7 @@ public class PlayerController : MonoBehaviour
 
         isGroundedLast = isGrounded;
 
-        savedInputs = input;
-    }
-    private void Update()
-    {
-        ControlAnimations(savedInputs);
+        anims.savedDirection = input;
     }
     private void Move(float x)
     {
@@ -241,42 +235,7 @@ public class PlayerController : MonoBehaviour
     }
     //-----------------------
     //Player Animations
-    private void ControlAnimations(Vector2 inputDirection)
-    {
-        if(isDead)
-        {
-            anims.SetInteger("AnimState", (int)playerAnimStates.Die);
-            return;
-        }
-
-        if(inputDirection.x != 0 && isGrounded)
-        {
-            anims.SetInteger("AnimState", (int)playerAnimStates.Run);
-            return;
-        }
-
-        if(!isGrounded && !coyoteTime)
-        { 
-            if(isTouchingWall && wallJumpEnabled)
-            {
-                anims.SetInteger("AnimState", (int)playerAnimStates.Wall);
-                return;
-            }
-
-            if(rb.velocity.y < 0)
-            {
-                anims.SetInteger("AnimState", (int)playerAnimStates.Fall);
-                return;
-            }
-
-            anims.SetInteger("AnimState", (int)playerAnimStates.Jump);
-            return;
-        }
-
-        anims.SetInteger("AnimState", (int)playerAnimStates.Idle);
-        return;
-
-    }
+    
     //-----------------------
     //Particle Effects
     private void PlayRunningParticleEffect()
@@ -316,14 +275,4 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireSphere(wallPoint.position, wallRadius);
     }
     //-----------------------
-}
-
-public enum playerAnimStates
-{
-    Idle,
-    Run,
-    Jump,
-    Fall,
-    Wall,
-    Die
 }
